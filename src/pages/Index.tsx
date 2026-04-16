@@ -7,11 +7,13 @@ import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
+import Icon from "@/components/ui/icon"
 
 export default function Index() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [currentSection, setCurrentSection] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const touchStartY = useRef(0)
   const touchStartX = useRef(0)
   const shaderContainerRef = useRef<HTMLDivElement>(null)
@@ -244,10 +246,36 @@ export default function Index() {
           ))}
         </div>
 
-        <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
+        <MagneticButton variant="secondary" className="hidden md:inline-flex" onClick={() => scrollToSection(4)}>
           Прайс
         </MagneticButton>
+
+        <button
+          className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground/15 backdrop-blur-md md:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <Icon name={mobileMenuOpen ? "X" : "Menu"} size={20} className="text-foreground" />
+        </button>
       </nav>
+
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-black/80 backdrop-blur-xl md:hidden">
+          <div className="flex flex-col items-center gap-8">
+            {["Главная", "Бренды", "Каталог", "О нас", "Контакты"].map((item, index) => (
+              <button
+                key={item}
+                onClick={() => { scrollToSection(index); setMobileMenuOpen(false) }}
+                className="font-sans text-3xl font-light text-foreground/90 transition-colors hover:text-foreground"
+              >
+                {item}
+              </button>
+            ))}
+            <MagneticButton size="lg" variant="primary" onClick={() => { scrollToSection(4); setMobileMenuOpen(false) }}>
+              Получить прайс
+            </MagneticButton>
+          </div>
+        </div>
+      )}
 
       <div
         ref={scrollContainerRef}
@@ -258,12 +286,12 @@ export default function Index() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {/* Hero Section */}
-        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
+        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-12 pt-20 md:px-12 md:pb-24 md:pt-24">
           <div className="max-w-3xl">
             <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
               <p className="font-mono text-xs text-foreground/90">Мебельная фурнитура и остатки</p>
             </div>
-            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
+            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 sm:text-5xl md:text-7xl lg:text-8xl">
               <span className="text-balance">
                 Качественная фурнитура для вашей мебели
               </span>
