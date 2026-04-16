@@ -1,0 +1,9 @@
+CREATE TABLE ldsp_remainders (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  article VARCHAR(100) NOT NULL,
+  width INTEGER NOT NULL,
+  height INTEGER NOT NULL,
+  depth INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);

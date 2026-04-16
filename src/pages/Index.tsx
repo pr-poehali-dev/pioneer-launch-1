@@ -7,6 +7,7 @@ import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Icon from "@/components/ui/icon"
 
 export default function Index() {
@@ -14,6 +15,7 @@ export default function Index() {
   const [currentSection, setCurrentSection] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
   const touchStartY = useRef(0)
   const touchStartX = useRef(0)
   const shaderContainerRef = useRef<HTMLDivElement>(null)
@@ -309,8 +311,8 @@ export default function Index() {
               >
                 Получить прайс
               </MagneticButton>
-              <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(2)}>
-                Смотреть каталог
+              <MagneticButton size="lg" variant="secondary" onClick={() => navigate("/catalog")}>
+                Остатки ЛДСП
               </MagneticButton>
             </div>
           </div>
