@@ -15,31 +15,31 @@ export function ServicesSection() {
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Услуги
+            Каталог
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши компетенции</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наш ассортимент</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
           {[
             {
-              title: "Веб-разработка",
-              description: "Создание современных веб-приложений любой сложности",
+              title: "Петли и направляющие",
+              description: "Широкий ассортимент петель для фасадов, направляющих для ящиков и скрытых систем открывания",
               direction: "top",
             },
             {
-              title: "UI/UX Дизайн",
-              description: "Проектирование удобных и красивых интерфейсов",
+              title: "Ручки и крепёж",
+              description: "Мебельные ручки, кнопки, винты и метизы для любых стилей и форматов мебели",
               direction: "right",
             },
             {
-              title: "Мобильные приложения",
-              description: "Кроссплатформенная разработка для iOS и Android",
+              title: "Остатки по сниженным ценам",
+              description: "Ликвидация складских остатков известных брендов — отличное качество по выгодным ценам",
               direction: "left",
             },
             {
-              title: "Консалтинг",
-              description: "Техническая экспертиза и стратегическое планирование",
+              title: "Оптовые поставки",
+              description: "Специальные условия для мебельных производств, мастерских и строительных компаний",
               direction: "bottom",
             },
           ].map((service, i) => (
